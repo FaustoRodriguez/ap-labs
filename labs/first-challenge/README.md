@@ -12,21 +12,20 @@ This is the first challenge in your Advanced Programming Class.
 Build Requirements
 ------------------
 ```
-# Build Requirements here
-```
+Python 3 needed to run the program
 
 
 How to build
 ------------
 ```
-# instructions here
+Run the file fc.py with any python compatible IDE of your chosing
 ```
 
 
 How to Run
 ----------
 ```
-# instructions here
+Declare an array and then run with the IDE
 ```
 
 
