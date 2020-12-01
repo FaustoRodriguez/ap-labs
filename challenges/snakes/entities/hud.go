@@ -1,0 +1,50 @@
+package entities
+
+import (
+	"image/color"
+	"strconv"
+
+	"github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten/text"
+	"golang.org/x/image/font/basicfont"
+)
+
+func init() {
+}
+
+// For the score and final screen
+type Hud struct {
+	game *Game
+}
+
+func NewHud(g *Game) *Hud {
+	h := Hud{g}
+	return &h
+}
+
+func (h *Hud) Update() error {
+	return nil
+}
+
+func textDimension(text string) (w int, h int) {
+	return 7 * len(text), 13
+}
+
+func (h *Hud) Render(screen *ebiten.Image) error {
+	if !h.game.running {
+		gameOverText := ""
+		if h.game.won {
+			gameOverText = "You've won"
+		} else {
+			gameOverText = "You've lost"
+		}
+		textW, textH := textDimension(gameOverText)
+		screenW := screen.Bounds().Dx()
+		screenH := screen.Bounds().Dy()
+		text.Draw(screen, gameOverText, basicfont.Face7x13, screenW/2-textW/2, screenH/2+textH/2, color.White)
+	} else {
+		text.Draw(screen, "Score: "+strconv.Itoa(h.game.points), basicfont.Face7x13, 20, 20, color.White)
+	}
+
+	return nil
+}
